@@ -1,0 +1,38 @@
+---
+title: "Lender SDK"
+description: "Fetch pool stats, APY, and user positions."
+---
+
+## Data Hooks
+
+Manteia provides a set of React hooks for easy integration into DeFi dashboards.
+
+### `useLenderStats`
+
+Returns the global stats of the Lending Vault.
+
+```javascript
+import { useLenderStats } from '@manteia/sdk/react';
+
+function VaultStats() {
+  const { tvl, apy, activeLoans } = useLenderStats();
+
+  return (
+    <div>
+      <h3>Total Value Locked: ${tvl}</h3>
+      <h3>Current APY: {apy}%</h3>
+      <h3>Active Businesses Funded: {activeLoans}</h3>
+    </div>
+  );
+}
+```
+
+### `useUserPosition`
+
+Returns a specific user's deposit balance and earned interest.
+
+```javascript
+import { useUserPosition } from '@manteia/sdk/react';
+
+const { deposited, earned, shareOfPool } = useUserPosition(userAddress);
+```

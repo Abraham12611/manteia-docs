@@ -1,0 +1,62 @@
+---
+title: "Founder SDK"
+description: "Integrate Manteia into your own dashboard or dApp."
+---
+
+## Overview
+
+The Founder SDK allows developers to embed Manteia's "Revenue-to-Capital" flow directly into their applications.
+
+### Installation
+
+```bash
+npm install @manteia/sdk @manteia/stripe-connector
+```
+
+### 1. Connecting Data
+
+Use the connector to fetch and format data locally.
+
+```javascript
+import { StripeConnector } from '@manteia/stripe-connector';
+
+const connector = new StripeConnector({
+  apiKey: process.env.STRIPE_SECRET_KEY
+});
+
+// Fetch last 12 months of revenue
+const revenueData = await connector.getRevenueHistory({ months: 12 });
+```
+
+### 2. Generating the Proof
+
+Generate the ZK proof client-side using the `ManteiaProver`.
+
+```javascript
+import { ManteiaProver } from '@manteia/sdk';
+
+const prover = new ManteiaProver();
+
+// Inputs must match the circuit requirements
+const inputs = {
+  monthly_revenue: revenueData.map(r => r.amount),
+  min_required: 10000 // $10k
+};
+
+const { proof, publicSignals } = await prover.generateProof('revenue_check', inputs);
+```
+
+### 3. Minting the FlowNFT
+
+Submit the proof to the blockchain.
+
+```javascript
+import { ManteiaContract } from '@manteia/sdk';
+
+const contract = new ManteiaContract(provider);
+
+const tx = await contract.mintFlowNFT(proof, publicSignals);
+await tx.wait();
+
+console.log("Capital Requested!");
+```
