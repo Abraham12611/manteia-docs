@@ -8,37 +8,44 @@
         "dark": "#00D4AA"
     },
     "favicon": "/images/favicon.png",
-    "navigation": [
-        {
-            "group": "Introduction",
-            "pages": [
-                "introduction",
-                "why",
-                "faq"
-            ]
-        },
-        {
-            "group": "Protocol Mechanics",
-            "pages": [
-                "mechanics/flownfts",
-                "mechanics/lending-vault"
-            ]
-        },
-        {
-            "group": "Risk Management",
-            "pages": [
-                "risk/blind-oracle",
-                "risk/on-chain-security"
-            ]
-        },
-        {
-            "group": "References",
-            "pages": [
-                "reference/contracts",
-                "reference/glossary"
-            ]
-        }
-    ],
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Documentation",
+                "groups": [
+                    {
+                        "group": "Introduction",
+                        "pages": [
+                            "introduction",
+                            "why",
+                            "faq"
+                        ]
+                    },
+                    {
+                        "group": "Protocol Mechanics",
+                        "pages": [
+                            "mechanics/flownfts",
+                            "mechanics/lending-vault"
+                        ]
+                    },
+                    {
+                        "group": "Risk Management",
+                        "pages": [
+                            "risk/blind-oracle",
+                            "risk/on-chain-security"
+                        ]
+                    },
+                    {
+                        "group": "References",
+                        "pages": [
+                            "reference/contracts",
+                            "reference/glossary"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     "logo": {
         "light": "/images/logo-light.svg",
         "dark": "/images/logo-dark.svg"
