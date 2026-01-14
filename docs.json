@@ -1,6 +1,6 @@
 {
     "$schema": "https://mintlify.com/docs.json",
-    "theme": "prism",
+    "theme": "mint",
     "name": "Manteia Protocol",
     "colors": {
         "primary": "#00D4AA",
