@@ -1,0 +1,37 @@
+---
+title: "The Lending Vault"
+description: "Automated liquidity allocation and yield generation."
+---
+
+## Overview
+
+The **Lending Vault** (`LendingVault.sol`) is the engine of the Manteia Protocol. It pools liquidity from lenders (Suppliers) and algorithmically allocates it to borrowers (FlowNFTs) based on strict risk criteria.
+
+## Mechanics
+
+### 1. Supply & Capital Efficiency
+Lenders deposit stablecoins (USDC) into the Vault.
+*   **Idle Capital**: Funds not currently lent out are not left wasted. They are routed to trusted yield-bearing strategies (e.g., **Ondo Finance USDY**) to maintain a baseline "Risk-Free" rate.
+*   **Active Capital**: When a valid FlowNFT is minted, the Vault swaps/withdraws necessary liquidity to purchase the NFT.
+
+### 2. Auto-Allocation
+The Vault does not rely on human credit committees. allocation is determined by **ZK Risk Scoring**.
+
+```solidity
+function purchaseFlowNFT(uint256 tokenId, uint256 amount, bytes calldata proof) external {
+    // 1. Verify ZK Proof matches Protocol Risk Parameters
+    verifier.verify(proof);
+    
+    // 2. Check Risk Score Threshold
+    require(riskScore > minRiskScore, "Risk too high");
+    
+    // 3. Execute Purchase
+    usdc.transfer(borrower, amount);
+    flowNft.transferFrom(borrower, address(this), tokenId);
+}
+```
+
+### 3. Yield Distribution
+The Vault acts as an **index of revenue streams**. Lenders own a share of the Vault (represented by LP tokens). As FlowNFTs pay back interest, the value of the LP token appreciates.
+
+*   **Diversification**: A single lender's deposit is spread across dozens or hundreds of businesses, minimizing the impact of any single default.

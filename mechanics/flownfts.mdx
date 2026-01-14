@@ -1,0 +1,40 @@
+---
+title: "FlowNFTs"
+description: "The core asset class of the Manteia Protocol."
+---
+
+## Definition
+
+A **FlowNFT** is a standard ERC-721 token that represents a legal and technical claim on a future revenue stream. Unlike static NFTs (art, collectibles), a FlowNFT is a **dynamic financial instrument** with intrinsic value derived from cash flow.
+
+## The Asset Lifecycle
+
+<Steps>
+  <Step title="Minting">
+    The borrower (founder) connects their data source (Stripe/Shopify). The Manteia client generates a ZK Proof of their historical revenue and solvency.
+    
+    Upon verification of the proof on-chain, the `ManteiaFactory` contract mints a **FlowNFT**. This NFT contains metadata regarding the loan terms (Amount, Rate, Duration) but *excludes* sensitive business data.
+  </Step>
+  
+  <Step title="Funding">
+    The FlowNFT is instantly offered to the **Lending Vault**. If the loan fits the vault's risk parameters (checked against the ZK proof's output score), the Vault purchases the NFT.
+    
+    *   **Result**: The NFT is transferred to the Vault. USDC is transferred to the Borrower.
+  </Step>
+  
+  <Step title="Repayment (Streaming)">
+    The borrower configures a **Smart Split** (based on `0xSplits`). A percentage of their daily revenue is automatically routed to the Manteia Repayment contract.
+    
+    As funds arrive, they are attributed to the FlowNFT. The Lending Vault (the holder) claims these funds + yield.
+  </Step>
+  
+  <Step title="Burning / Maturity">
+    Once the total repayment amount (Principal + Fee) is reached, the FlowNFT is considered **Matured**. It can be burned or archived as a "Certificate of Creditworthiness" for future loans.
+  </Step>
+</Steps>
+
+## Technical Specs
+
+*   **Standard**: ERC-721
+*   **Metadata**: stored on IPFS (Loan Terms, Risk Score, ZK Proof Hash).
+*   **Transferability**: Fully transferable. Secondary markets can form for trading active revenue streams.
