@@ -1,0 +1,29 @@
+{
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "almond",
+    "name": "Manteia Protocol",
+    "colors": {
+        "primary": "#00D4AA",
+        "light": "#00D4AA",
+        "dark": "#00D4AA"
+    },
+    "favicon": "/images/favicon.png",
+    "navigation": [
+        {
+            "group": "Introduction",
+            "pages": [
+                "introduction"
+            ]
+        }
+    ],
+    "logo": {
+        "light": "/images/logo-light.svg",
+        "dark": "/images/logo-dark.svg"
+    },
+    "footer": {
+        "socials": {
+            "x": "https://x.com/manteia",
+            "github": "https://github.com/manteia-protocol"
+        }
+    }
+}
