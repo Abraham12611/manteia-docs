@@ -1,0 +1,39 @@
+---
+title: "The Blind Oracle"
+description: "Manteia's Zero-Knowledge Architecture for privacy-preserving data verification."
+---
+
+## The Privacy Paradox
+
+In traditional finance, trust requires transparency. A bank cannot lend to you unless they see your bank statements. In Web3, transparency is absolute—everything on-chain is public. This is a dealbreaker for businesses who treat their financial data as a trade secret.
+
+Manteia solves this with the **Blind Oracle**.
+
+## How It Works
+
+We use **Zero-Knowledge Proofs (ZK-SNARKs)** to separate the *verification* of data from the *data itself*.
+
+<CardGroup cols={1}>
+  <Card title="Circuit: revenue_check.circom" icon="microchip">
+    The core of our privacy layer. This circuit accepts private inputs (your revenue history) and outputs a public proof.
+  </Card>
+</CardGroup>
+
+### The Workflow
+
+1.  **Local Execution**: The Manteia Client runs locally in your browser. It fetches data directly from Stripe/Shopify APIs via HTTPS.
+2.  **Witness Generation**: The client inputs this data into the `revenue_check` circuit.
+3.  **Proof Generation**: The circuit checks the data against Manteia's underwriting rules (e.g., "Is 6-month average > $10k?"). It generates a cryptographic proof.
+4.  **On-Chain Verification**: You submit *only the proof* to the Manteia Smart Contract. The contract verifies the math. If correct, it accepts the risk score without ever seeing the raw dollar amounts or customer names.
+
+### Data Integrity
+
+How do we know the user didn't fake the API response?
+*   **TLSNotary / MPC**: We utilize Multi-Party Computation methods (similar to DECO or TLSNotary) to attest that the data originated from the specific server (e.g., `api.stripe.com`) and was not tampered with in transit.
+
+## Output
+
+The "Blind Oracle" produces three public signals:
+1.  **Risk Score**: (0-100) Computed based on volatility, churn, and growth.
+2.  **Borrow Limit**: The maximum amount the protocol allows this entity to borrow.
+3.  **Integrity Hash**: A hash of the dataset for future dispute resolution (optional).

@@ -1,0 +1,34 @@
+---
+title: "On-Chain Security"
+description: "Contracts, Audits, and Safety Mechanisms."
+---
+
+## Smart Contract Architecture
+
+Manteia is "Built on Math" and enforced by immutable code.
+
+*   **`Verifier.sol`**: An auto-generated contract from Circom/SnarkJS. It contains the verification key for the ZK circuit. It is mathematically impossible to forge a valid proof without valid input data.
+*   **`LendingVault.sol`**: Holds all un-lent capital. It adheres to the **Checks-Effects-Interactions** pattern to prevent reentrancy attacks.
+*   **`FlowNFT.sol`**: Standard ERC-721 implementation with restricted minting rights (only the `ManteiaFactory` can mint).
+
+## Audits
+
+*(Note: Manteia is currently in Beta. Audit reports will be posted here upon completion.)*
+
+<CardGroup cols={2}>
+  <Card title="ZK Circuits" icon="file-code">
+    Pending Audit...
+  </Card>
+  <Card title="Smart Contracts" icon="shield-check">
+    Pending Audit...
+  </Card>
+</CardGroup>
+
+## Emergency Pausing
+
+To protect lender funds in the event of a black swan or discovered vulnerability, the **Manteia DAO Security Council** holds a 2/3 multisig capability to:
+1.  Pause new minting (borrowing).
+2.  Pause withdrawals (in extreme bank run scenarios).
+3.  Upgrade the `Verifier` contract (if a new ZK vulnerability is found).
+
+The DAO cannot confiscate funds or seize FlowNFTs arbitrarily.
