@@ -1,0 +1,52 @@
+{
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "prism",
+    "name": "Manteia Protocol",
+    "colors": {
+        "primary": "#00D4AA",
+        "light": "#00D4AA",
+        "dark": "#00D4AA"
+    },
+    "favicon": "/images/favicon.png",
+    "navigation": [
+        {
+            "group": "Introduction",
+            "pages": [
+                "introduction",
+                "why",
+                "faq"
+            ]
+        },
+        {
+            "group": "Protocol Mechanics",
+            "pages": [
+                "mechanics/flownfts",
+                "mechanics/lending-vault"
+            ]
+        },
+        {
+            "group": "Risk Management",
+            "pages": [
+                "risk/blind-oracle",
+                "risk/on-chain-security"
+            ]
+        },
+        {
+            "group": "References",
+            "pages": [
+                "reference/contracts",
+                "reference/glossary"
+            ]
+        }
+    ],
+    "logo": {
+        "light": "/images/logo-light.svg",
+        "dark": "/images/logo-dark.svg"
+    },
+    "footer": {
+        "socials": {
+            "x": "https://x.com/manteia",
+            "github": "https://github.com/manteia-protocol"
+        }
+    }
+}
