@@ -1,0 +1,27 @@
+---
+title: "FAQs"
+description: "Common questions about Manteia Protocol."
+---
+
+<AccordionGroup>
+  <Accordion title="Is my data safe?">
+    **Yes.** Manteia uses Zero-Knowledge (ZK) technology usually `circom` circuits. Your sensitive data (customer lists, transaction details) is processed locally on your device or server. Only the *proof* of your revenue metrics (e.g., "Avg MRR > $50k") is sent to the blockchain. The raw data never leaves your control.
+  </Accordion>
+
+  <Accordion title="What happens if a business defaults?">
+    Commercial financing carries risk. Manteia mitigates this through:
+    1.  **Smart Splits**: Revenue is diverted at the source (payment processor level) to the repayment contract *before* it reaches the borrower.
+    2.  **Over-collateralization**: Loans are issued against a discount of future revenue.
+    3.  **Legal Enforcement**: In worst-case scenarios, the off-chain legal framework (tied to the NFT issuance) empowers the protocol DAO to pursue recovery.
+  </Accordion>
+
+  <Accordion title="Where does the yield come from?">
+    Yield is generated from two sources:
+    1.  **Loan Interest**: Borrowers pay a fee for accessing capital (the "Factoring Fee").
+    2.  **Base Yield**: Idle capital in the Lending Vault is deployed into safe RWA strategies (e.g., Ondo USDY) to ensure capital is always productive.
+  </Accordion>
+
+  <Accordion title="Function of the FlowNFT?">
+    The **FlowNFT** is the financial instrument representing the loan. It gives the holder the right to claim the repayment stream. These NFTs can be traded, collateralized, or held to maturity.
+  </Accordion>
+</AccordionGroup>
